@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "rafi",
+    "password": "rafi325011",
+    "database": "chatApp",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "rafi",
+    "password": "rafi325011",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "rafi",
+    "password": "rafi325011",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

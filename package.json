@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Chat app",
+  "main": "index.js",
+  "author": "Minhazur Rahman",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon bin/dev.js",
+    "start": "node bin/prod",
+    "build": "node bin/build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "apollo-server-core": "^3.6.3",
+    "apollo-server-express": "^3.6.3",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.16.3",
+    "shelljs": "^0.8.5"
+  }
+}
