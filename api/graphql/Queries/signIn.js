@@ -1,6 +1,7 @@
 import {User} from '../../models/user';
 import {UserInputError} from "apollo-server-core";
 import bcrypt from "bcrypt";
+import {accessToken, refreshToken} from "../../helper/jwtCreator";
 
 export const signIn = async (_, {username, password}, ctx, req) => {
     let errors = {};
@@ -21,11 +22,28 @@ export const signIn = async (_, {username, password}, ctx, req) => {
             throw new UserInputError("BAD_USER_INPUT", errors);
         }
 
+        let access_JWT_token = await accessToken({
+            _id: user._id,
+            username: user.username,
+            email: user.email
+        });
+
+
+        let refresh_JWT_token = await refreshToken({
+            _id: user._id,
+            username: user.username,
+            email: user.email
+        });
+
         return {
-            msg: "Success"
+            msg: "Success",
+            jwt: {
+                accessToken: access_JWT_token,
+                refreshToken: refresh_JWT_token
+            }
         };
     } catch (err) {
-        // console.log(err.extensions);
-        throw new UserInputError("BAD_USER_INPUT", err.extensions);
+        console.log(err);
+        throw new UserInputError("BAD_USER_INPUT", {errors: err.extensions});
     }
 }

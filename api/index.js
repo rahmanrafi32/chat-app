@@ -4,6 +4,7 @@ import express from 'express';
 import http from 'http';
 import {typeDefs, resolvers} from "./graphql";
 import {sequelize} from "./models";
+import {verifyJwtToken} from "./helper/jwtValidator";
 
 require('dotenv').config();
 
@@ -14,13 +15,16 @@ async function startApolloServer(typeDefs, resolvers) {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
+        context: async ({req}) => {
+            return await verifyJwtToken(req.headers["authorization"]);
+        },
         plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
     });
 
-    sequelize.sync({alter:true})
+    sequelize.sync({alter: true})
         .then(() => console.log("connected"))
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
 
     await server.start();
