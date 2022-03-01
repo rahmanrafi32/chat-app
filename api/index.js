@@ -17,7 +17,7 @@ async function startApolloServer(typeDefs, resolvers) {
         plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
     });
 
-    sequelize.sync()
+    sequelize.sync({alter:true})
         .then(() => console.log("connected"))
         .catch(err => {
             console.log(err)

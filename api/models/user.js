@@ -9,9 +9,9 @@ export const User = sequelize.define("user", {
             msg: "User name is already taken"
         },
         validate: {
-            len:{
-                args:[2],
-                msg:'User name is too short'
+            len: {
+                args: [2],
+                msg: 'User name is too short'
             },
             notEmpty: {
                 args: true,
@@ -26,8 +26,8 @@ export const User = sequelize.define("user", {
             msg: "Email is already registered"
         },
         validate: {
-            is: {
-                args: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            isEmail: {
+                args: true,
                 msg: "Enter a valid email"
             },
             notEmpty: {
@@ -39,17 +39,13 @@ export const User = sequelize.define("user", {
     password: {
         type: Sequelize.STRING,
         validate: {
-            is: {
-                args: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
-                msg: "Enter a valid password"
-            },
             notEmpty: {
                 args: true,
                 msg: "Password cant be empty"
             }
         }
     },
-    profilePic: {
-        type: Sequelize.STRING
-    },
+    // profilePic: {
+    //     type: Sequelize.STRING
+    // },
 });

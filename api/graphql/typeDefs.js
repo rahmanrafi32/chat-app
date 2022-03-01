@@ -5,9 +5,8 @@ export const typeDefs = gql`
         username: String,
         email: String,
         password: String,
-        confirm_password: String
     }
-    
+
     type User{
         username: String,
         email: String,
@@ -20,7 +19,8 @@ export const typeDefs = gql`
     }
 
     type Query{
-        test:String
+        test:String,
+        signIn(username:String,password:String): return,
     }
 
     type Mutation{
