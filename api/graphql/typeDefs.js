@@ -1,4 +1,4 @@
-import {gql} from "apollo-server-core";
+import {gql} from "apollo-server-express";
 
 export const typeDefs = gql`
     input SignUpInput{
@@ -12,7 +12,7 @@ export const typeDefs = gql`
         email: String,
         password: String,
     }
-    
+
     type Tokens{
         accessToken: String,
         refreshToken: String
@@ -23,15 +23,32 @@ export const typeDefs = gql`
         jwt: Tokens
     }
 
+    type Message {
+        text: String,
+        from: String,
+        to: String
+    }
+
+    input MessageInput{
+        text: String,
+        to: String
+    }
+
     type Query{
         test:String,
         signIn(username:String,password:String): return,
+        getMessages(from:String): [Message]
     }
 
     type Mutation{
         test: String,
         signUp(payload:SignUpInput): User,
         jwt_refresh_token(refresh_Token:String): return,
-        protected_route: return
+        message(payload: MessageInput): Message
     }
+    
+    type Subscription{
+        newMessageSubscription: Message
+    }
+    
 `
